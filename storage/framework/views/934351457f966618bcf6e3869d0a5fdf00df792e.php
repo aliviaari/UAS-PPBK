@@ -15,12 +15,13 @@
 
     <!-- Scripts -->
     <?php echo app('Illuminate\Foundation\Vite')(['resources/sass/app.scss', 'resources/js/app.js']); ?>
+    <link href="<?php echo e(asset('css/pizza.css')); ?>" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
+                <a class="navbar-brand" href="<?php echo e(url('/home')); ?>">
                     <?php echo e(config('app.name', 'Laravel')); ?>
 
                 </a>
@@ -31,6 +32,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isResto')): ?>
+<li class="nav-item"><a class="nav-link"
+href="<?php echo e(url('/resto/pizza')); ?>">Pizza</a></li>
+<li class="nav-item"><a class="nav-link"
+href="<?php echo e(url('/resto/user')); ?>">User</a></li>
+<?php endif; ?>
 
                     </ul>
 
